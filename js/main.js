@@ -48,10 +48,9 @@ function input() {
 }
 
 
-
 function inps() {
-  var allInputs = document.querySelectorAll('.all');
-  var resultSpan = document.querySelector('.spen');
+  var allInputs = document.querySelectorAll('.spen');
+  var resultSpan = document.querySelector('.all');
   var number = parseInt(allInputs[0].value);
 
   if (!isNaN(number)) {
@@ -72,4 +71,3 @@ function inps() {
     resultSpan.textContent = 'Iltimos, haqiqiy son kiriting.';
   }
 }
-
