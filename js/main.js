@@ -1,73 +1,38 @@
-var elList = document.querySelector('.list');
-var count = 0;
+var elForm = document.querySelector('.form')
+var elInp = document.querySelector('.inp')
+var elList = document.querySelector('.list')
+var elImg = document.querySelector('.image')
+var spn = document.querySelector('.spn')
+var arr = []
 
-function next() {
-  if (count < 3) {
-    count = count + 1;
-  } else {
-    count = 0;
-  }
-  elList.style.transform = `translateX(-${600 * count}px)`;
-}
+elForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  arr.push(elInp.value, elImg.value)
+  fnFor(arr)
+})
 
-function back() {
-  if (count > 0) {
-    count = count - 1;
-  } else {
-    count = 3;
-  }
-  elList.style.transform = `translateX(-${600 * count}px)`;
-}
-
-
-//yangi vazifa 
-
-var elSpan = document.querySelector('span');
-var elInput = document.querySelector('.inpt');
-
-function input() {
-  var number = parseInt(elInput.value);
-
-  if (number === 3 || number === 7) {
-    var natija = '';
+function fnFor(arr) {
+  elList.innerHTML =''
+  for (let i = 0; i < arr.length; i+=2) {
+    var newButton = document.createElement('button')
+    var newBtn = document.createElement('button')
+    var newImg = document.createElement('img')
     
-    for (var i = 0; i < 100; i++) {
-      if (i % number === 0) {
-        natija += i + ' ';
-      }
-    }
-
-    if (natija !== '') {
-      elSpan.textContent = natija;
-    } else {
-      elSpan.textContent = 'Bunday son mavjud emas.';
-    }
-  } else {
-    elSpan.textContent = 'Faqat 3 yoki 7 ni kriting.';
-  }
-}
-
-
-function inps() {
-  var allInputs = document.querySelectorAll('.spen');
-  var resultSpan = document.querySelector('.all');
-  var number = parseInt(allInputs[0].value);
-
-  if (!isNaN(number)) {
-    var result = '';
-
-    for (let i = 0; i < 100; i++) {
-      if (i % number === 0) {
-        result += i + ' ';
-      }
-    }
-
-    if (result !== '') {
-      resultSpan.textContent = result;
-    } else {
-      resultSpan.textContent = 'Bunday son mavjud emas.';
-    }
-  } else {
-    resultSpan.textContent = 'Iltimos, haqiqiy son kiriting.';
+    var newLi = document.createElement('li')
+    var newS = document.createElement('span')
+    newLi.classList.add('items')
+    newButton.classList.add('button')
+    newImg.setAttribute('src', arr[i+1])
+    newBtn.classList.add('btn_b')
+    newImg.classList.add('imgs')
+    newS.classList.add('bold')
+    newS.textContent = arr[i]
+    newButton.textContent ='del'
+    newBtn.textContent ='add'
+    elList.appendChild(newLi)
+    newLi.appendChild(newImg)
+    newLi.appendChild(newS)
+    newLi.appendChild(newButton)
+    newLi.appendChild(newBtn)
   }
 }
